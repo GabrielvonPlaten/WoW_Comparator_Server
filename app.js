@@ -14,7 +14,7 @@ app.get('/api/comparator', async (req, res) => {
     }))
 });
 
-app.get('/comparator/posts/api', (req, res) => {
+app.get('/api/posts', (req, res) => {
   // Mockup Data
   res.send([
     {
