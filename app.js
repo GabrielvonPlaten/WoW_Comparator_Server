@@ -1,10 +1,16 @@
 require('dotenv').config()
+require('./db/server');
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+
+const postRoutes = require('./routes/Post');
 const app = express();
 
 app.use(cors());
+app.use(express.json());
+app.use(postRoutes);
+
 
 app.get('/api/comparator', async (req, res) => {
   await axios.get(`https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`)
