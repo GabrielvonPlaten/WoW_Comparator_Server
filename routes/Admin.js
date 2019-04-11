@@ -1,5 +1,9 @@
 const express = require('express');
 const Admin = require('../models/Admin');
+
+// Middleware
+const adminAuth = require('../middleware/AdminAuth');
+
 const router = new express.Router();
 
 // Create Admin User
@@ -28,6 +32,10 @@ router.post('/admin/login', async (req, res) => {
   } catch (err) {
     res.status(400).send(err);
   }
+});
+
+router.get('/admin/profile', adminAuth, async (req, res) => {
+  res.send(req.admin);
 });
 
 module.exports = router;
