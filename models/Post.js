@@ -8,6 +8,12 @@ const postSchema = new mongoose.Schema({
     minlength: 1,
   },
 
+  subtitle: {
+    type: String,
+    required: true,
+    minlength: 1
+  },
+
   blocks: Mixed
 });
 
