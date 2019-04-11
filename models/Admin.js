@@ -49,15 +49,44 @@ const adminSchema = new mongoose.Schema({
   }],
 });
 
+// Find Admin by credentials
+adminSchema.statics.findByCredentials = async (name, password) => {
+  const admin = await Admin.findOne({ name });
+
+  if (!admin) {
+    throw new Error('Unable to log in');
+  }
+
+  const isMatch = await bcrypt.compare(password, admin.password);
+
+  if (!isMatch) {
+    throw new Error('Unable to log in');
+  };
+
+  return admin;
+}
+
+// Generate Auth Session Token
 adminSchema.methods.generateAuthToken = async function() {
   const admin = this;
-  const token = jwt.sign({ _id: admin._id.toString() }, "2r27rQl86shnp7q", { expiresIn: '3 days'})
+  const token = jwt.sign({ _id: admin._id.toString() }, "2r27rQl86shnp7q", { expiresIn: '1 days'})
 
   admin.tokens = [...admin.tokens, {token}];
   await admin.save();
 
   return token;
-}
+};
+
+
+adminSchema.pre('save', async function(next) {
+  const admin = this;
+
+  if (admin.isModified("password")) {
+    admin.password = await bcrypt.hash(admin.password, 8);
+  };
+
+  next();
+})
 
 let Admin = mongoose.model('Admin', adminSchema);
 module.exports = Admin;
