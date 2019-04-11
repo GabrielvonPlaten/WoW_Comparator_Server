@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const adminSchema = new mongoose.Schema({
   name: {
@@ -38,8 +40,24 @@ const adminSchema = new mongoose.Schema({
       }
     },
   },
+
+  tokens: [{
+    token: {
+      type: String,
+      required: true,
+    }
+  }],
 });
 
-const Admin = mongoose.model('Admin', adminSchema);
+adminSchema.methods.generateAuthToken = async function() {
+  const admin = this;
+  const token = jwt.sign({ _id: admin._id.toString() }, "2r27rQl86shnp7q", { expiresIn: '3 days'})
 
+  admin.tokens = [...admin.tokens, {token}];
+  await admin.save();
+
+  return token;
+}
+
+let Admin = mongoose.model('Admin', adminSchema);
 module.exports = Admin;

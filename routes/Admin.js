@@ -1,16 +1,17 @@
 const express = require('express');
-const AdminUser = require('../models/Admin');
+const Admin = require('../models/Admin');
 const router = new express.Router();
 
 // Create User
 router.post('/register/admin', async (req, res) => {
-  const admin = new AdminUser(req.body);
+  const user = new Admin(req.body);
 
   try {
-    await admin.save();
-    res.status(201).send({ message: 'Admin Created!' });
+    await user.save();
+    const token = await user.generateAuthToken();
+    res.status(201).send({ user, token });
   } catch (err) {
-    res.status(400).send();
+    res.status(400).send(err);
   };
 });
 
