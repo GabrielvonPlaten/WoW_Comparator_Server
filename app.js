@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 // Routes
 const postRoutes = require('./routes/Post');
-const adminUserRoutes = require('./routes/Admin');
+const admin = require('./routes/Admin');
 
 const app = express();
 app.use(cors());
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 // Use Routes
 app.use(postRoutes);
-app.use(adminUserRoutes);
+app.use(admin);
 
 
 app.get('/api/comparator', async (req, res) => {
