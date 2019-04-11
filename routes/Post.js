@@ -3,9 +3,6 @@ const Post = require('../models/Post');
 const router = new express.Router();
 
 router.post('/api/create-post', async (req, res) => {
-  console.log('-----------------')
-  console.log(JSON.stringify(req.body, undefined, 2))
-
   const post = new Post({
     title: req.body.title,
     subtitle: req.body.subtitle,
