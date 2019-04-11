@@ -34,6 +34,30 @@ router.post('/admin/login', async (req, res) => {
   }
 });
 
+router.post('/admin/logout', adminAuth, async (req, res) => {
+  try {
+    req.admin.tokens = req.admin.tokens.filter(token => {
+      return token.token !== req.token
+    });
+
+    await req.admin.save();
+
+    res.send();
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+router.post('/admin/logout-all', adminAuth, async (req, res) => {
+  try {
+    req.admin.tokens = [];
+    await req.admin.save();
+    res.send();
+  } catch (err) {
+    res.status(500).send();
+  }
+})
+
 router.get('/admin/profile', adminAuth, async (req, res) => {
   res.send(req.admin);
 });
