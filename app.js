@@ -5,13 +5,18 @@ const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+// Routes
 const postRoutes = require('./routes/Post');
-const app = express();
+const admin = require('./routes/Admin');
 
+const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
+
+// Use Routes
 app.use(postRoutes);
+app.use(admin);
 
 
 app.get('/api/comparator', async (req, res) => {
