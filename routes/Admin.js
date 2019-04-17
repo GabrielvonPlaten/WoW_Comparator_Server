@@ -7,7 +7,7 @@ const adminAuth = require('../middleware/AdminAuth');
 const router = new express.Router();
 
 // Create Admin User
-router.post('/register/admin', async (req, res) => {
+router.post('/api/admin/register', async (req, res) => {
   const admin = new Admin(req.body);
 
   try {
@@ -19,13 +19,12 @@ router.post('/register/admin', async (req, res) => {
   };
 });
 
-router.post('/admin/login', async (req, res) => {
-  let name = req.body.name;
+router.post('/api/admin/login', async (req, res) => {
+  let email = req.body.email;
   let password = req.body.password;
 
   try {
-    console.log(name, password)
-    const user = await Admin.findByCredentials(name, password);
+    const user = await Admin.findByCredentials(email, password);
     const token = await user.generateAuthToken();
 
     res.send({ user, token });
@@ -34,7 +33,7 @@ router.post('/admin/login', async (req, res) => {
   }
 });
 
-router.post('/admin/logout', adminAuth, async (req, res) => {
+router.post('/api/admin/logout', adminAuth, async (req, res) => {
   try {
     req.admin.tokens = req.admin.tokens.filter(token => {
       return token.token !== req.token
@@ -48,7 +47,7 @@ router.post('/admin/logout', adminAuth, async (req, res) => {
   }
 });
 
-router.post('/admin/logout-all', adminAuth, async (req, res) => {
+router.post('/api/admin/logout-all', adminAuth, async (req, res) => {
   try {
     req.admin.tokens = [];
     await req.admin.save();
@@ -58,7 +57,7 @@ router.post('/admin/logout-all', adminAuth, async (req, res) => {
   }
 })
 
-router.get('/admin/profile', adminAuth, async (req, res) => {
+router.get('/api/admin/profile', adminAuth, async (req, res) => {
   res.send(req.admin);
 });
 

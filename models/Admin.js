@@ -47,11 +47,13 @@ const adminSchema = new mongoose.Schema({
       required: true,
     }
   }],
+}, {
+  timestamps: true
 });
 
 // Find Admin by credentials
-adminSchema.statics.findByCredentials = async (name, password) => {
-  const admin = await Admin.findOne({ name });
+adminSchema.statics.findByCredentials = async (email, password) => {
+  const admin = await Admin.findOne({ email });
 
   if (!admin) {
     throw new Error('Unable to log in');
