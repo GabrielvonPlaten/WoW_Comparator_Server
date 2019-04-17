@@ -41,6 +41,22 @@ router.get('/api/posts', async (req, res) => {
   } catch (err) {
     res.status(500).send();
   }
+});
+
+router.get('/api/post/:id', async (req, res) => {
+  let id = req.params.id
+
+  try {
+    const post = await Post.findById(id)
+    
+    if (!post) {
+      return res.status(404).send()
+    };
+
+    res.send(post)
+  } catch(err) {
+    res.status(500).send(err)
+  }
 })
 
 module.exports = router;
