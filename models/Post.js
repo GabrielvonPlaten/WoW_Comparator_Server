@@ -6,12 +6,20 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
+    unique: true,
   },
 
   subtitle: {
     type: String,
     required: true,
     minlength: 1
+  },
+
+  slug: {
+    type: String,
+    required: true,
+    minlength: 1,
+    unique: true,
   },
 
   blocks: Mixed

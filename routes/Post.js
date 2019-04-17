@@ -6,9 +6,16 @@ const router = new express.Router();
 const adminAuth = require('../middleware/AdminAuth');
 
 router.post('/api/create-post', async (req, res) => {
+
+  // Replace all white spaces with hyphens
+  // Slugs are used on the route to a single post
+  let slug = req.body.title;
+  slug = slug.replace(/\s+/g, '-').toLowerCase();
+
   const post = new Post({
     title: req.body.title,
     subtitle: req.body.subtitle,
+    slug,
     blocks: req.body.outputData,
   });
 
