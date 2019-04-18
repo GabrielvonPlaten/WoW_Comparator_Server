@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId 
 const Mixed = mongoose.Schema.Types.Mixed
 
 const postSchema = new mongoose.Schema({
@@ -20,6 +21,12 @@ const postSchema = new mongoose.Schema({
     required: true,
     minlength: 1,
     unique: true,
+  },
+
+  authorId: {
+    type: ObjectId,
+    required: true,
+    ref: 'Admin'
   },
 
   blocks: Mixed

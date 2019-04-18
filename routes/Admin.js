@@ -7,7 +7,7 @@ const adminAuth = require('../middleware/AdminAuth');
 const router = new express.Router();
 
 // Create Admin User
-router.post('/api/admin/register', async (req, res) => {
+router.post('/api/admin/register/cq2762SC65W7RfN', async (req, res) => {
   const admin = new Admin(req.body);
 
   try {

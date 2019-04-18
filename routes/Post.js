@@ -1,11 +1,12 @@
 const express = require('express');
 const Post = require('../models/Post');
+const Admin = require('../models/Admin');
 const router = new express.Router();
 
 // Auth Middleware
 const adminAuth = require('../middleware/AdminAuth');
 
-router.post('/api/create-post', async (req, res) => {
+router.post('/api/create-post', adminAuth, async (req, res) => {
 
   // Replace all white spaces with hyphens
   // Slugs are used on the route to a single post
@@ -17,6 +18,7 @@ router.post('/api/create-post', async (req, res) => {
     subtitle: req.body.subtitle,
     slug,
     blocks: req.body.outputData,
+    authorId: req.admin._id
   });
 
   try {
@@ -29,7 +31,8 @@ router.post('/api/create-post', async (req, res) => {
 
 router.delete('/api/post/:id', adminAuth, async (req, res) => {
   try {
-    const post = await Post.findOneAndDelete({ _id: req.params.id, });
+    const post = await Post.findOneAndDelete({ _id: req.params.id, authorId: req.user._id});
+    await post.populate('authorId').execPopulate();
 
     if (!post) {
       return res.status(404).send()
@@ -55,12 +58,13 @@ router.get('/api/post/:slug', async (req, res) => {
 
   try {
     const post = await Post.find({ slug })
-    
+      
     if (!post) {
       return res.status(404).send()
     };
 
-    res.send(post)
+    let author = await Admin.findById(post[0].authorId);
+    res.send({post, author: author.name})
   } catch(err) {
     res.status(500).send(err)
   }

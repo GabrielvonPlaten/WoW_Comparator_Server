@@ -51,6 +51,15 @@ const adminSchema = new mongoose.Schema({
   timestamps: true
 });
 
+// Virtual property
+// We are not manipulating the User document
+// Virtual is a way for mongoose to figure out how User and Tasks are related
+adminSchema.virtual('posts', {
+  ref: 'Post',
+  localField: '_id',
+  foreignField: 'authorId',
+});
+
 // Find Admin by credentials
 adminSchema.statics.findByCredentials = async (email, password) => {
   const admin = await Admin.findOne({ email });
