@@ -53,11 +53,12 @@ router.get('/api/posts', async (req, res) => {
   }
 });
 
-router.get('/api/post/:slug', async (req, res) => {
+router.get('/api/post/:id/:slug', async (req, res) => {
+  let _id = req.params.id
   let slug = req.params.slug
 
   try {
-    const post = await Post.find({ slug })
+    const post = await Post.find({ _id, slug })
       
     if (!post) {
       return res.status(404).send()
