@@ -31,7 +31,7 @@ router.post('/api/create-post', adminAuth, async (req, res) => {
 
 router.delete('/api/post/:id', adminAuth, async (req, res) => {
   try {
-    const post = await Post.findOneAndDelete({ _id: req.params.id, authorId: req.user._id});
+    const post = await Post.findOneAndDelete({ _id: req.params.id, authorId: req.admin._id});
     await post.populate('authorId').execPopulate();
 
     if (!post) {
