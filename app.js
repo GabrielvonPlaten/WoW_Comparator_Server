@@ -6,6 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // Routes
+const jumbotronBgImage = require('./routes/website-styles');
 const postRoutes = require('./routes/Post');
 const admin = require('./routes/Admin');
 
@@ -15,9 +16,9 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // Use Routes
+app.use(jumbotronBgImage); 
 app.use(postRoutes);
 app.use(admin);
-
 
 app.get('/api/comparator', async (req, res) => {
   await axios.get(`https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`)
