@@ -1,12 +1,14 @@
 require('dotenv').config()
 require('./db/server');
+require('./json/total-requests.json');
+require('./json/website-style-data.json');
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // Routes
-const jumbotronBgImage = require('./routes/Website-styles');
+const websiteStyles = require('./routes/Website_Styles');
 const totalRequests = require('./routes/Requests')
 const postRoutes = require('./routes/Post');
 const admin = require('./routes/Admin');
@@ -17,7 +19,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // Use Routes
-app.use(jumbotronBgImage); 
+app.use(websiteStyles); 
 app.use(totalRequests)
 app.use(postRoutes);
 app.use(admin);
