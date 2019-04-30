@@ -14,6 +14,7 @@ mongoose.connect('mongodb://heroku_v2pfv6l0:ljj3neqr6pqaie3nvslqsituqq@ds115569.
   useCreateIndex: true,
   useFindAndModify: false,
 });
+
 module.exports = {
   mongoose,
 }
