@@ -1,5 +1,7 @@
 require('dotenv').config()
 require('./db/server');
+require('./json/total-requests.json');
+require('./json/website-style-data.json');
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
