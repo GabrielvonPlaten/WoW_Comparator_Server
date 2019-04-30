@@ -11,6 +11,7 @@ router.post('/api/create-post', adminAuth, async (req, res) => {
   // Replace all white spaces with hyphens
   // Slugs are used on the route to a single post
   let slug = req.body.title;
+  slug = slug.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\s\{\}\[\]\\\/]/gi, '-').toLowerCase();
   slug = slug.replace(/\s+/g, '-').toLowerCase();
 
   const post = new Post({

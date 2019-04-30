@@ -6,7 +6,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // Routes
-const jumbotronBgImage = require('./routes/website-styles');
+const jumbotronBgImage = require('./routes/Website-styles');
+const totalRequests = require('./routes/Requests')
 const postRoutes = require('./routes/Post');
 const admin = require('./routes/Admin');
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 
 // Use Routes
 app.use(jumbotronBgImage); 
+app.use(totalRequests)
 app.use(postRoutes);
 app.use(admin);
 
