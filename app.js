@@ -24,6 +24,7 @@ app.use(QueriesMade)
 app.use(postRoutes);
 app.use(admin);
 
+// Get a time-limited access_token to fetch the rest of the Game Data APIs
 app.get('/api/comparator', async (req, res) => {
   await axios.get(`https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`)
     .then(response => res.send(response.data))
@@ -39,7 +40,6 @@ if (process.env.NODE_ENV === 'production') {
   // Handle Single Page Application
   app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
 }
-
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
