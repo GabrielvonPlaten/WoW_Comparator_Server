@@ -2,8 +2,6 @@ const express = require('express');
 const Styles = require('../models/Styles');
 const router = new express.Router();
 
-const fs = require('fs');
-const path = require('path');
 
 // Middleware
 const adminAuth = require('../middleware/AdminAuth');
