@@ -49,6 +49,9 @@ const userSchema = new mongoose.Schema({
       realm: {
         type: String,
       },
+      region: {
+        type: String,
+      }
     },
   }],
 
@@ -82,13 +85,22 @@ userSchema.statics.findByCredentials = async (email, password) => {
 // Generate Auth Session Token
 userSchema.methods.generateAuthToken = async function() {
   const user = this;
-  const token = jwt.sign({ _id: user._id.toString() }, "2r27rQl86shnp7q", { expiresIn: '1 days'})
+  const token = jwt.sign({ _id: user._id.toString() }, "797OQ1Qyz4O247H")
 
   user.tokens = [...user.tokens, {token}];
   await user.save();
 
   return token;
 };
+
+// Add Character to the favorite character list
+userSchema.methods.addFavoriteChar = async function(charData) {
+  console.log('here')
+  const user = this;
+  
+  user.favoriteChars = [...user.favoriteChars, {charData}];
+  await user.save();
+}
 
 
 userSchema.pre('save', async function(next) {
