@@ -16,7 +16,7 @@ nodemon app.js
 ## Blizzard's access_token
 The first route to fire when the website is loaded. This route will fetch an access_token from Blizzard to get access to almost* all their APIs
 
-Within the route, a GET request is made to a Blizzard endpoint to retrive the token. However, the endpoint requires a CLIENT_ID and a CLIENT_SECRET from Blizzard. To get those, go to https://develop.battle.net/access, register or login, and requests a new CLIENT_ID.
+Within the route, a GET request is made to a Blizzard endpoint to retrive the token. However, the endpoint requires a **CLIENT_ID** and a CLIENT_SECRET from Blizzard. To get those, go to https://develop.battle.net/access, register or login, and requests a new **CLIENT_ID**.
 
 * /api/comparator
 
