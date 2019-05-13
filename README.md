@@ -1,5 +1,5 @@
 # WoW Comparator Server
-This is the Node back end for WoW Comparator
+This is the basic Node back end for the WoW Comparator
 
 To install
 ```
@@ -23,6 +23,7 @@ Within the route, a GET request is made to a Blizzard endpoint to retrive the to
 
 ## Admin Routes
 
+All authentication and authorization are made using JWT tokens. 
 
 * **POST** 
   * /api/admin/register/
