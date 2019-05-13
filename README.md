@@ -45,7 +45,7 @@ All authentication and authorization are made using JWT tokens.
   * /api/admin/logout-all
   ```javascript
   {
-    headers: {Authorization: Bearer {token}}
+    headers: {Authorization: Bearer token}
   }
   ```
 
@@ -54,7 +54,7 @@ All authentication and authorization are made using JWT tokens.
   * /api/admin/profile
   ```javascript
   {
-    headers: {Authorization: Bearer {token}}
+    headers: {Authorization: Bearer token}
   }
   ```
 
@@ -68,7 +68,7 @@ All authentication and authorization are made using JWT tokens.
     "subtitle": String
     "blocks": Mixed
   }, {
-    headers: {Authorization: Bearer {token}}
+    headers: {Authorization: Bearer token}
   }
   ```
 
@@ -76,7 +76,7 @@ All authentication and authorization are made using JWT tokens.
   * /api/post/:id
   ```javascript
   {
-    headers: {Authorization: Bearer {token}}
+    headers: {Authorization: Bearer token}
   }
   ```
 
@@ -95,7 +95,7 @@ Get total queries made in the website when user succesfully finds a character
 
   ```javascript
   {
-    headers: {Authorization: Bearer {token}}
+    headers: {Authorization: Bearer token}
   }
   ```
 
@@ -109,7 +109,7 @@ Routes to track total website visits.
   * /api/website-visists
   ```javascript
   {
-    headers: {Authorization: Bearer {token}}
+    headers: {Authorization: Bearer token}
   }
   ```
 
@@ -123,7 +123,7 @@ Change the jumbotron background image in the admin's settings view. The image (b
     "name": String
     "backgroundImage": String
   }, {
-    headers: {Authorization: Bearer {token}}
+    headers: {Authorization: Bearer token}
   }
   ```
 
@@ -133,7 +133,7 @@ Change the jumbotron background image in the admin's settings view. The image (b
   {
     "backgroundImage": String
   }, {
-    headers: {Authorization: Bearer {token}}
+    headers: {Authorization: Bearer token}
   }
   ```
 
