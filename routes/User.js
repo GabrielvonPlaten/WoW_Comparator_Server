@@ -59,7 +59,7 @@ router.post('/api/logout-all', userAuth, async (req, res) => {
 });
 
 // Favorite Character Routes
-router.patch('/api/getFavoriteChar', userAuth, async (req, res) => {
+router.patch('/api/addFavoriteChar', userAuth, async (req, res) => {
   let _id = req.user._id;
   let name = req.body.name;
   let realm = req.body.realm;
@@ -89,7 +89,7 @@ router.delete('/api/getFavoriteChar/:id', userAuth, async (req, res) => {
   let _id = req.params.id
   
   try {
-    const user = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { _id: req.user._id }, 
       { $pull: { favoriteChars: { _id }}});
 
