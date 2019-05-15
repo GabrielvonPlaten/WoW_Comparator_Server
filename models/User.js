@@ -11,6 +11,16 @@ const userSchema = new mongoose.Schema({
     minlength: 1,
   },
 
+  avatarImg: {
+    type: String,
+    default: null,
+  },
+
+  backgroundImage: {
+    type: String,
+    default: null,
+  },
+
   isAdmin: {
     type: Boolean,
     required: true,
@@ -65,15 +75,14 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Find Admin by credentials
+// Find User by credentials
 userSchema.statics.findByCredentials = async (email, password) => {
-  const admin = await Admin.findOne({ email });
-
-  if (!admin) {
+  const user = await User.findOne({ email });
+  if (!user) {
     throw new Error('Unable to log in');
   }
 
-  const isMatch = await bcrypt.compare(password, admin.password);
+  const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
     throw new Error('Unable to log in');
@@ -92,15 +101,6 @@ userSchema.methods.generateAuthToken = async function() {
 
   return token;
 };
-
-// Add Character to the favorite character list
-userSchema.methods.addFavoriteChar = async function(charData) {
-  console.log('here')
-  const user = this;
-  
-  user.favoriteChars = [...user.favoriteChars, {charData}];
-  await user.save();
-}
 
 
 userSchema.pre('save', async function(next) {
