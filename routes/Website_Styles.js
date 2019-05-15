@@ -2,8 +2,6 @@ const express = require('express');
 const Styles = require('../models/Styles');
 const router = new express.Router();
 
-const fs = require('fs');
-const path = require('path');
 
 // Middleware
 const adminAuth = require('../middleware/AdminAuth');
@@ -24,15 +22,6 @@ router.post('/api/jumbotron-bg-image', adminAuth, async (req, res) => {
     res.status(500).send();
   }
 })
-
-router.get('/api/jumbotron-bg-image', async (req, res) => {
-  try {
-    const styles = await Styles.find().sort({ _id: -1 });
-    res.send(styles)
-  } catch (err) {
-    res.status(500).send();
-  }
-});
 
 router.patch('/api/jumbotron-bg-image/:id', adminAuth, async (req, res) => {
   let _id = req.params.id;
@@ -64,6 +53,15 @@ router.patch('/api/jumbotron-bg-image/:id', adminAuth, async (req, res) => {
     res.status(500).send();
   }
 
+});
+
+router.get('/api/jumbotron-bg-image', async (req, res) => {
+  try {
+    const styles = await Styles.find().sort({ _id: -1 });
+    res.send(styles)
+  } catch (err) {
+    res.status(500).send();
+  }
 });
 
 module.exports = router;
