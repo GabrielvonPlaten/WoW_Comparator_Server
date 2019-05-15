@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 // Routes
 const websiteStyles = require('./routes/Website_Styles');
 const WebsiteVisits = require('./routes/WebsiteVisits');
-const QueriesMade = require('./routes/QueriesMade')
+const QueriesMade = require('./routes/QueriesMade');
+const User = require('./routes/User');
 const postRoutes = require('./routes/Post');
 const admin = require('./routes/Admin');
 
@@ -23,6 +24,7 @@ app.use(WebsiteVisits)
 app.use(QueriesMade)
 app.use(postRoutes);
 app.use(admin);
+app.use(User);
 
 // Get a time-limited access_token to fetch the rest of the Game Data APIs
 app.get('/api/comparator', async (req, res) => {
