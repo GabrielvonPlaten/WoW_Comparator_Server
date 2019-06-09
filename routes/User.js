@@ -66,7 +66,7 @@ router.patch('/api/addFavoriteChar', userAuth, async (req, res) => {
   let region = req.body.region;
   let access_token = "";
 
-  await axios.get('http://localhost:5000/api/comparator')
+  await axios.get('http://wow-comparator.com/api/comparator')
     .then(async response => {
       access_token = await response.data.access_token
       // Search the character by the user's inputs.
