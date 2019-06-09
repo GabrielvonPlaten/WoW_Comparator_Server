@@ -2,18 +2,15 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://127.0.0.1:27017/wow_comparator', {
+DB_URI = process.env.NODE_ENV === 'production' ? process.env.DB_URI_PROD : process.env.DB_URI_DEV 
+
+
+mongoose.connect(DB_URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
 });
 
-
-// mongoose.connect('mongodb://heroku_v2pfv6l0:ljj3neqr6pqaie3nvslqsituqq@ds115569.mlab.com:15569/heroku_v2pfv6l0', {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-//   useFindAndModify: false,
-// });
 
 module.exports = {
   mongoose,
