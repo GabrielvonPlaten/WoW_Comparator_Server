@@ -1,6 +1,11 @@
 # WoW Comparator Server
 This is the basic Node back end for the WoW Comparator
 
+You can visit the website at https://wow-comparator.com
+
+# Stack used
+The website is build using MongoDB, Exrpess, Vue, and Node.
+
 To install
 ```
 git clone https://github.com/GabrielvonPlaten/WoW_Comparator_Server.git
