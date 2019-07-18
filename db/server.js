@@ -7,14 +7,11 @@ DB_URI =
     ? process.env.DB_URI_PROD
     : process.env.DB_URI_DEV;
 
-mongoose.connect(
-  "mongodb://heroku_v2pfv6l0:ljj3neqr6pqaie3nvslqsituqq@ds115569.mlab.com:15569/heroku_v2pfv6l0",
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-  }
-);
+mongoose.connect(DB_URI, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
 
 module.exports = {
   mongoose
