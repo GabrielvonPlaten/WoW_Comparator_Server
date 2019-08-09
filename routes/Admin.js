@@ -16,7 +16,7 @@ router.post('/api/admin/register/cq2762SC65W7RfN', async (req, res) => {
     res.status(201).send({ admin, token });
   } catch (err) {
     res.status(400).send(err);
-  };
+  }
 });
 
 router.post('/api/admin/login', async (req, res) => {
@@ -36,7 +36,7 @@ router.post('/api/admin/login', async (req, res) => {
 router.post('/api/admin/logout', adminAuth, async (req, res) => {
   try {
     req.admin.tokens = req.admin.tokens.filter(token => {
-      return token.token !== req.token
+      return token.token !== req.token;
     });
 
     await req.admin.save();
@@ -55,7 +55,7 @@ router.post('/api/admin/logout-all', adminAuth, async (req, res) => {
   } catch (err) {
     res.status(500).send();
   }
-})
+});
 
 router.get('/api/admin/profile', adminAuth, async (req, res) => {
   res.send(req.admin);
