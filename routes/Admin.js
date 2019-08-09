@@ -7,17 +7,18 @@ const adminAuth = require('../middleware/AdminAuth');
 const router = new express.Router();
 
 // Create Admin User
-router.post('/api/admin/register/cq2762SC65W7RfN', async (req, res) => {
-  const admin = new Admin(req.body);
+// Disabled for now. This route is not needed at the moment.
+// router.post('/api/admin/register/cq2762SC65W7RfN', async (req, res) => {
+//   const admin = new Admin(req.body);
 
-  try {
-    await admin.save();
-    const token = await admin.generateAuthToken();
-    res.status(201).send({ admin, token });
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
+//   try {
+//     await admin.save();
+//     const token = await admin.generateAuthToken();
+//     res.status(201).send({ admin, token });
+//   } catch (err) {
+//     res.status(400).send(err);
+//   }
+// });
 
 router.post('/api/admin/login', async (req, res) => {
   let email = req.body.email;
