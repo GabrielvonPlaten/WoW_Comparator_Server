@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const queriesMadeSchema = new mongoose.Schema({
   queries: {
-    type: Number,
+    type: Number
   }
 });
 
-let QueriesMade = mongoose.model('QueriesMade', queriesMadeSchema)
+let QueriesMade = mongoose.model('QueriesMade', queriesMadeSchema);
 
 module.exports = QueriesMade;
