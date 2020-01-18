@@ -1,6 +1,7 @@
 # WoW Comparator Server
-This is the basic Node back end for the WoW Comparator
 
+Client Repo: https://github.com/GabrielvonPlaten/WoW_Comparator_Client
+____
 You can visit the website at https://wow-comparator.com
 
 # Stack used
